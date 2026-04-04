@@ -13,6 +13,7 @@ templates = Jinja2Templates(directory="templates")
 def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
+
 # Optional API (future use)
 @app.get("/cakes")
 def get_cakes():
