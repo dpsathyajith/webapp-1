@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+﻿from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
@@ -12,7 +12,12 @@ templates = Jinja2Templates(directory="templates")
 @app.get("/home", response_class=HTMLResponse)
 def home(request: Request):
     # index.html must be inside ./templates/
-    return templates.TemplateResponse("index.html", {"request": request})
+    # Use keyword args to stay compatible across Starlette/FastAPI versions.
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={"request": request},
+    )
 
 # Example API endpoint
 @app.get("/cakes")
@@ -32,6 +37,6 @@ class Order(BaseModel):
 def create_order(order: Order):
     print("Order received!:", order.dict())
     return {
-        "message": "Order placed successfully 🎉",
+        "message": "Order placed successfully!",
         "order": order.dict()
     }
