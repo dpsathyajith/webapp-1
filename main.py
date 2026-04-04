@@ -30,7 +30,7 @@ class Order(BaseModel):
 # Order endpoint
 @app.post("/order")
 def create_order(order: Order):
-    print("Order received:", order.dict())
+    print("Order received!:", order.dict())
     return {
         "message": "Order placed successfully 🎉",
         "order": order.dict()
