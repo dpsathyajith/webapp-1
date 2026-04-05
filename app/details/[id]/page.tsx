@@ -31,7 +31,7 @@ export default async function DetailsPage({ params }: { params: { id: string } }
   return (
     <main className="details-page">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Inter:wght@300;400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Inter:wght@300;400;500;600&display=swap");
 
         :root {
           --bg: #fafafa;
@@ -228,7 +228,7 @@ export default async function DetailsPage({ params }: { params: { id: string } }
       
       <header>
         <Link href="/" className="nav-link">← Back</Link>
-        <div className="brand">Vogue</div>
+        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>Clothiq <span style={{ fontFamily: "'Anek Malayalam', sans-serif", fontSize: '24px', letterSpacing: '0px', textTransform: 'none' }}>ക്ലോത്തിക്</span></div>
         <div>
           <span className="nav-link">Bag (0)</span>
         </div>

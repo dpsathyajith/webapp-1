@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Vogue - Premium Garments",
+  title: "Clothiq | ക്ലോത്തിക്",
   description: "Next.js frontend for premium garments shopping",
 };
 

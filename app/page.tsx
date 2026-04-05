@@ -38,7 +38,7 @@ export default async function Home() {
   return (
     <main className="page">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Inter:wght@300;400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Inter:wght@300;400;500;600&display=swap");
 
         :root {
           --bg: #fafafa;
@@ -93,7 +93,7 @@ export default async function Home() {
           content: "";
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1920&q=80') center/cover;
+          background: url('https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?auto=format&fit=crop&w=1920&q=80') center/cover;
           opacity: 0.85;
           z-index: -1;
         }
@@ -349,7 +349,7 @@ export default async function Home() {
       `}</style>
 
       <header>
-        <div className="brand">Vogue</div>
+        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>Clothiq <span style={{ fontFamily: "'Anek Malayalam', sans-serif", fontSize: '24px', letterSpacing: '0px' }}>ക്ലോത്തിക്</span></div>
         <div>
           <span>Bag (0)</span>
         </div>
@@ -357,8 +357,8 @@ export default async function Home() {
 
       <section className="hero">
         <div className="hero-content">
-          <h1 className="hero-title">The Fall Edit</h1>
-          <p className="hero-subtitle">Discover the new standard in modern elegance. Premium fabrics hand-picked for the season.</p>
+          <h1 className="hero-title">The Kerala Edit</h1>
+          <p className="hero-subtitle">Discover the beauty of tradition woven with modern elegance. Premium ethnic and casual wear.</p>
           <a href="#collections" className="btn-primary">Shop Collection</a>
         </div>
       </section>
