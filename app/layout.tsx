@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Cake Shop",
-  description: "Next.js frontend for FastAPI",
+  title: "Vogue - Premium Garments",
+  description: "Next.js frontend for premium garments shopping",
 };
 
 export default function RootLayout({
