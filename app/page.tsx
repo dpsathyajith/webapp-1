@@ -41,16 +41,24 @@ export default async function Home() {
         @import url("https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400;500;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;600;700&family=Inter:wght@300;400;500;600&display=swap");
 
         :root {
-          --bg: #fafafa;
-          --text-main: #111111;
-          --text-muted: #666666;
-          --accent: #222222;
-          --border: #eaeaea;
+          --bg: #fdf8f3;
+          --text-main: #1a1a1a;
+          --text-muted: #6b5e54;
+          --accent: #8b6914;
+          --accent-dark: #5a4510;
+          --border: #e8ddd0;
+          --gold: #c9a84c;
+          --gold-light: #f5e6b8;
         }
 
         * { box-sizing: border-box; }
         body { margin: 0; background: var(--bg); color: var(--text-main); font-family: 'Inter', sans-serif; }
         a { text-decoration: none; color: inherit; }
+
+        ::selection {
+          background: var(--gold-light);
+          color: var(--accent-dark);
+        }
 
         .page {
           min-height: 100vh;
@@ -63,8 +71,8 @@ export default async function Home() {
           justify-content: space-between;
           align-items: center;
           border-bottom: 1px solid var(--border);
-          background: rgba(255, 255, 255, 0.8);
-          backdrop-filter: blur(10px);
+          background: linear-gradient(135deg, rgba(253,248,243,0.95), rgba(245,230,184,0.3));
+          backdrop-filter: blur(12px);
           position: sticky;
           top: 0;
           z-index: 100;
@@ -76,6 +84,15 @@ export default async function Home() {
           font-weight: 700;
           letter-spacing: 1px;
           text-transform: uppercase;
+          color: var(--accent-dark);
+        }
+
+        .brand-ml {
+          font-family: 'Anek Malayalam', sans-serif;
+          font-size: 20px;
+          letter-spacing: 0;
+          text-transform: none;
+          color: var(--gold);
         }
 
         .hero {
@@ -93,8 +110,8 @@ export default async function Home() {
           content: "";
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: url('https://images.unsplash.com/photo-1610116306796-6fea9f4fae38?auto=format&fit=crop&w=1920&q=80') center/cover;
-          opacity: 0.85;
+          background: url('/hero-collage.png') center/cover;
+          opacity: 0.9;
           z-index: -1;
         }
         
@@ -102,7 +119,7 @@ export default async function Home() {
           content: "";
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: linear-gradient(to bottom, rgba(250,250,250,0.2), var(--bg));
+          background: linear-gradient(to bottom, rgba(253,248,243,0.4) 0%, rgba(139,105,20,0.15) 50%, var(--bg) 100%);
           z-index: -1;
         }
 
@@ -123,11 +140,13 @@ export default async function Home() {
           margin: 0 0 16px;
           font-weight: 600;
           line-height: 1.1;
+          color: var(--accent-dark);
+          text-shadow: 0 2px 20px rgba(201,168,76,0.2);
         }
 
         .hero-subtitle {
           font-size: 18px;
-          color: #333;
+          color: var(--text-muted);
           margin-bottom: 32px;
           font-weight: 300;
           letter-spacing: 0.5px;
@@ -135,7 +154,7 @@ export default async function Home() {
 
         .btn-primary {
           display: inline-block;
-          background: var(--accent);
+          background: linear-gradient(135deg, var(--accent), var(--gold));
           color: #fff;
           padding: 16px 36px;
           font-size: 14px;
@@ -144,12 +163,13 @@ export default async function Home() {
           font-weight: 500;
           border-radius: 4px;
           transition: all 0.3s ease;
-          border: 1px solid var(--accent);
+          border: none;
+          box-shadow: 0 4px 20px rgba(139,105,20,0.3);
         }
 
         .btn-primary:hover {
-          background: transparent;
-          color: var(--accent);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 28px rgba(139,105,20,0.45);
         }
 
         .container {
@@ -175,7 +195,19 @@ export default async function Home() {
           font-size: 32px;
           margin: 0 0 24px;
           padding-bottom: 12px;
-          border-bottom: 1px solid var(--border);
+          border-bottom: 2px solid var(--gold-light);
+          color: var(--accent-dark);
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+
+        .section-title::before {
+          content: '';
+          width: 4px;
+          height: 28px;
+          background: linear-gradient(to bottom, var(--gold), var(--accent));
+          border-radius: 2px;
         }
 
         .grid {
@@ -186,7 +218,7 @@ export default async function Home() {
 
         .card {
           background: #fff;
-          border-radius: 8px;
+          border-radius: 12px;
           overflow: hidden;
           transition: transform 0.4s ease, box-shadow 0.4s ease;
           border: 1px solid var(--border);
@@ -197,7 +229,8 @@ export default async function Home() {
 
         .card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+          box-shadow: 0 20px 40px rgba(139,105,20,0.12);
+          border-color: var(--gold-light);
         }
 
         .card-img-wrapper {
@@ -235,9 +268,10 @@ export default async function Home() {
         }
 
         .card-price {
-          font-size: 16px;
-          font-weight: 600;
-          color: var(--text-muted);
+          font-size: 17px;
+          font-weight: 700;
+          color: var(--accent);
+          font-family: 'Inter', sans-serif;
         }
 
         .sidebar {
@@ -247,11 +281,11 @@ export default async function Home() {
         }
 
         .login-box {
-          background: #fff;
+          background: linear-gradient(135deg, #fff, #fdf5e6);
           border: 1px solid var(--border);
-          border-radius: 12px;
+          border-radius: 16px;
           padding: 32px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+          box-shadow: 0 10px 40px rgba(139,105,20,0.08);
         }
 
         .login-title {
@@ -300,16 +334,16 @@ export default async function Home() {
 
         .btn-full {
           width: 100%;
-          background: var(--accent);
+          background: linear-gradient(135deg, var(--accent), var(--gold));
           color: #fff;
           border: none;
           height: 48px;
           font-size: 14px;
           font-weight: 500;
           letter-spacing: 0.5px;
-          border-radius: 4px;
+          border-radius: 8px;
           cursor: pointer;
-          transition: opacity 0.3s;
+          transition: all 0.3s;
           text-transform: uppercase;
           margin-top: 8px;
         }
@@ -349,7 +383,7 @@ export default async function Home() {
       `}</style>
 
       <header>
-        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>Clothiq <span style={{ fontFamily: "'Anek Malayalam', sans-serif", fontSize: '24px', letterSpacing: '0px' }}>ക്ലോത്തിക്</span></div>
+        <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>Clothiq <span className="brand-ml">ക്ലോത്തിക്</span></div>
         <div>
           <span>Bag (0)</span>
         </div>
@@ -377,7 +411,7 @@ export default async function Home() {
                       </div>
                       <div className="card-details">
                         <h3 className="card-name">{item.name}</h3>
-                        <div className="card-price">\u20B9{item.price.toLocaleString()}</div>
+                        <div className="card-price">{"₹"}{item.price.toLocaleString()}</div>
                       </div>
                     </Link>
                   ))}
