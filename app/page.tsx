@@ -20,8 +20,26 @@ async function getGarments(): Promise<Garment[]> {
   return res.json();
 }
 
+async function getBannerBackground(): Promise<string> {
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8080";
+  try {
+    // Fetches the document with ID 3
+    const res = await fetch(`${apiBase}/cakes/3`, { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.lbg) {
+        return data.lbg;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching banner from Firebase:", error);
+  }
+  return '/hero-collage.png'; // Fallback
+}
+
 export default async function Home() {
   const garments = await getGarments();
+  const bannerBg = await getBannerBackground();
 
   const sarees = garments.filter(g => g.category === 'saree');
   const churidhars = garments.filter(g => g.category === 'churidhar');
@@ -110,7 +128,7 @@ export default async function Home() {
           content: "";
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
-          background: url('/hero-collage.png') center/cover;
+          background: url('${bannerBg}') center/cover;
           opacity: 0.9;
           z-index: -1;
         }
