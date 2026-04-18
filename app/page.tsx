@@ -37,18 +37,24 @@ async function getBannerBackground(): Promise<string> {
   return '/hero-collage.png'; // Fallback
 }
 
-async function getSareePlaceholders(): Promise<{ cont1: string, cont2: string }> {
+async function getSareePlaceholders(): Promise<{ cont1: string, cont2: string, name: string, price: number, description: string }> {
   const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8080";
   try {
     const res = await fetch(`${apiBase}/cakes/4`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
-      return { cont1: data.cont1 || '', cont2: data.cont2 || '' };
+      return { 
+        cont1: data.cont1 || '', 
+        cont2: data.cont2 || '',
+        name: data.name || 'Featured Item',
+        price: data.price || 0,
+        description: data.description || ''
+      };
     }
   } catch (error) {
     console.error("Error fetching placeholders from Firebase:", error);
   }
-  return { cont1: '', cont2: '' };
+  return { cont1: '', cont2: '', name: '', price: 0, description: '' };
 }
 
 export default async function Home() {
@@ -430,41 +436,38 @@ export default async function Home() {
         </div>
       </section>
 
-      {(placeholders.cont1 || placeholders.cont2) && (
-        <div className="container" style={{ marginTop: '40px', marginBottom: '0px' }}>
-          <div className="main-content">
-            <section>
-              <h2 className="section-title">Featured Sarees</h2>
+      <div className="container" id="collections">
+        <div className="main-content">
+          {(placeholders.cont1 || placeholders.cont2) && (
+            <section style={{ marginBottom: '40px' }}>
+              <h2 className="section-title">Featured Collection</h2>
               <div className="grid">
                 {placeholders.cont1 && (
-                  <div className="card">
+                  <Link href="/details/4" className="card">
                     <div className="card-img-wrapper">
-                      <img src={placeholders.cont1} alt="Saree Placeholder 1" loading="lazy" />
+                      <img src={placeholders.cont1} alt={placeholders.name} loading="lazy" />
                     </div>
-                    <div className="card-details" style={{ padding: '12px 20px' }}>
-                      <h3 className="card-name" style={{ margin: 0, color: 'var(--text-muted)' }}>Placeholder 1</h3>
+                    <div className="card-details">
+                      <h3 className="card-name">{placeholders.name} - 1</h3>
+                      <div className="card-price">{"₹"}{placeholders.price.toLocaleString()}</div>
                     </div>
-                  </div>
+                  </Link>
                 )}
                 {placeholders.cont2 && (
-                  <div className="card">
+                  <Link href="/details/4" className="card">
                     <div className="card-img-wrapper">
-                      <img src={placeholders.cont2} alt="Saree Placeholder 2" loading="lazy" />
+                      <img src={placeholders.cont2} alt={placeholders.name} loading="lazy" />
                     </div>
-                    <div className="card-details" style={{ padding: '12px 20px' }}>
-                      <h3 className="card-name" style={{ margin: 0, color: 'var(--text-muted)' }}>Placeholder 2</h3>
+                    <div className="card-details">
+                      <h3 className="card-name">{placeholders.name} - 2</h3>
+                      <div className="card-price">{"₹"}{placeholders.price.toLocaleString()}</div>
                     </div>
-                  </div>
+                  </Link>
                 )}
               </div>
             </section>
-          </div>
-          <div>{/* Empty sidebar spacer */}</div>
-        </div>
-      )}
+          )}
 
-      <div className="container" id="collections">
-        <div className="main-content">
           {categories.map((cat) => (
             cat.data.length > 0 && (
               <section key={cat.title}>

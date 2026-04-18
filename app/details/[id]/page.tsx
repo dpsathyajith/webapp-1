@@ -241,7 +241,7 @@ export default async function DetailsPage({ params }: { params: { id: string } }
         <div className="product-info">
           <div className="category">{garment.category}</div>
           <h1 className="title">{garment.name}</h1>
-          <div className="price">\u20B9{garment.price.toLocaleString()}</div>
+          <div className="price">{"₹ "}{garment.price.toLocaleString()}</div>
           
           <div className="description">
             {garment.description}
