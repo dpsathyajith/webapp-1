@@ -43,8 +43,8 @@ async function getSareePlaceholders(): Promise<{ cont1: string, cont2: string, n
     const res = await fetch(`${apiBase}/cakes/4`, { cache: "no-store" });
     if (res.ok) {
       const data = await res.json();
-      return { 
-        cont1: data.cont1 || '', 
+      return {
+        cont1: data.cont1 || '',
         cont2: data.cont2 || '',
         name: data.name || 'Featured Item',
         price: data.price || 0,
@@ -448,7 +448,7 @@ export default async function Home() {
                       <img src={placeholders.cont1} alt={placeholders.name} loading="lazy" />
                     </div>
                     <div className="card-details">
-                      <h3 className="card-name">{placeholders.name} - 1</h3>
+                      <h3 className="card-name">{placeholders.name} </h3>
                       <div className="card-price">{"₹"}{placeholders.price.toLocaleString()}</div>
                     </div>
                   </Link>
@@ -459,7 +459,7 @@ export default async function Home() {
                       <img src={placeholders.cont2} alt={placeholders.name} loading="lazy" />
                     </div>
                     <div className="card-details">
-                      <h3 className="card-name">{placeholders.name} - 2</h3>
+                      <h3 className="card-name">{placeholders.name}</h3>
                       <div className="card-price">{"₹"}{placeholders.price.toLocaleString()}</div>
                     </div>
                   </Link>
@@ -494,12 +494,12 @@ export default async function Home() {
           <div className="login-box">
             <h3 className="login-title">Sign In</h3>
             <p className="login-subtitle">Unlock personalized recommendations and faster checkout with your mobile number.</p>
-            
+
             <div className="form-group">
               <label htmlFor="mobile">Mobile Number</label>
               <input id="mobile" className="input" type="tel" placeholder="+91" />
             </div>
-            
+
             <button className="btn-full" type="button">Send OTP</button>
 
             <div style={{ marginTop: '24px', opacity: 0.5, pointerEvents: 'none' }}>
@@ -509,7 +509,7 @@ export default async function Home() {
               </div>
               <button className="btn-full" type="button" style={{ background: '#000', color: '#fff' }}>Verify</button>
             </div>
-            
+
             <div className="otp-actions">
               <button className="btn-text" type="button">Resend Code</button>
             </div>
