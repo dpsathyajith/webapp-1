@@ -37,9 +37,24 @@ async function getBannerBackground(): Promise<string> {
   return '/hero-collage.png'; // Fallback
 }
 
+async function getSareePlaceholders(): Promise<{ cont1: string, cont2: string }> {
+  const apiBase = process.env.NEXT_PUBLIC_API_BASE ?? "http://localhost:8080";
+  try {
+    const res = await fetch(`${apiBase}/cakes/4`, { cache: "no-store" });
+    if (res.ok) {
+      const data = await res.json();
+      return { cont1: data.cont1 || '', cont2: data.cont2 || '' };
+    }
+  } catch (error) {
+    console.error("Error fetching placeholders from Firebase:", error);
+  }
+  return { cont1: '', cont2: '' };
+}
+
 export default async function Home() {
   const garments = await getGarments();
   const bannerBg = await getBannerBackground();
+  const placeholders = await getSareePlaceholders();
 
   const sarees = garments.filter(g => g.category === 'saree');
   const churidhars = garments.filter(g => g.category === 'churidhar');
@@ -414,6 +429,39 @@ export default async function Home() {
           <a href="#collections" className="btn-primary">Shop Collection</a>
         </div>
       </section>
+
+      {(placeholders.cont1 || placeholders.cont2) && (
+        <div className="container" style={{ marginTop: '40px', marginBottom: '0px' }}>
+          <div className="main-content">
+            <section>
+              <h2 className="section-title">Featured Sarees</h2>
+              <div className="grid">
+                {placeholders.cont1 && (
+                  <div className="card">
+                    <div className="card-img-wrapper">
+                      <img src={placeholders.cont1} alt="Saree Placeholder 1" loading="lazy" />
+                    </div>
+                    <div className="card-details" style={{ padding: '12px 20px' }}>
+                      <h3 className="card-name" style={{ margin: 0, color: 'var(--text-muted)' }}>Placeholder 1</h3>
+                    </div>
+                  </div>
+                )}
+                {placeholders.cont2 && (
+                  <div className="card">
+                    <div className="card-img-wrapper">
+                      <img src={placeholders.cont2} alt="Saree Placeholder 2" loading="lazy" />
+                    </div>
+                    <div className="card-details" style={{ padding: '12px 20px' }}>
+                      <h3 className="card-name" style={{ margin: 0, color: 'var(--text-muted)' }}>Placeholder 2</h3>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+          </div>
+          <div>{/* Empty sidebar spacer */}</div>
+        </div>
+      )}
 
       <div className="container" id="collections">
         <div className="main-content">
